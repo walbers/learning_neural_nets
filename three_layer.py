@@ -16,7 +16,14 @@ x_train, x_val, y_train, y_val = train_test_split(dig.data, onehot_target, test_
 # y_train (1617, 10)
 
 # input layer - 64 neurons becuz image is 8x8
-
 # hidden layer - 1 and 2 have 128 neurons, arbitrary - sigmoid activation
-
 # output layer - 10 nodes because number can be 0-9 - softmax error?
+
+from keras.layers import Dense
+from keras.models import Sequential
+from keras.optimizers import RMSprop, Adadelta, Adam
+
+model = Sequential()
+model.add(Dense(128, input_dim=x_train.shape[1], activation='sigmoid'))
+model.add(Dense(128, activation='sigmoid'))
+model.add(Dense(10, activation='softmax'))
